@@ -13,12 +13,12 @@ include './header.php';
          $sql = "SELECT * FROM tbl_contacts WHERE 1 AND "
              . " (first_name LIKE :keyword) ORDER BY first_name ";
 
-         $stmt = $db->prepare($sql);
+         $stmt = $DB->prepare($sql);
 
          $stmt->bindValue(":keyword", $keyword."%");
      }else{
          $sql = "SELECT * FROM tbl_contacts WHERE 1 ORDER BY first_name";
-         $stmt = $db->prepare($sql);
+         $stmt = $DB->prepare($sql);
 
      }
 
@@ -42,7 +42,7 @@ include './header.php';
         <button class="btn btn-info">search</button>
     </form>
 
-    <div class="pull-right" ><a href="contacts.php?m=''&cid=''"><button > Add New Contact</button></a></div>
+    <div class="pull-right" ><a href="contacts.php"><button > Add New Contact</button></a></div>
 
     <div class="clearfix"></div>
 

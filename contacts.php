@@ -7,7 +7,7 @@
 
         $sql = "SELECT * FROM tbl_contacts WHERE 1 AND contact_id = :cid";
 
-        $stmt = $db->prepare($sql);
+        $stmt = $DB->prepare($sql);
 
         $stmt->bindValue(":cid",intval($_GET["cid"]));
 
@@ -32,7 +32,7 @@
 
         <form class="form-horizontal" name="contact_form" id="contact_form" enctype="multipart/form-data" method="post" action="process_form.php">
 
-            <input type="hidden" name="mode" value="<?php echo $_GET['m']=='update'?'update_old':'add_new'?>">
+            <input type="hidden" name="mode" value="<?php echo "";echo  $_GET['m']=='update'?'update_old':'add_new'?>">
             <input type="hidden" name="old_pic" value="<?php echo $results[0]["profile_pic"]?>">
             <input type="hidden" name="cid" value="<?php echo $results[0]["contact_id"]?>">
 
@@ -119,6 +119,8 @@
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </div>
+
+
 
 
 

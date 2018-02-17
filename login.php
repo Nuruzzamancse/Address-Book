@@ -1,73 +1,63 @@
 <?php
 
 
-							
-	try {	
-			
-			if(isset($_POST['submit_button'])) 
+
+	try {
+
+			if(isset($_POST['submit_button']))
 			{
-				
-					if(empty($_POST['user_userid']) AND empty($_POST['user_userpass']) ) {
-						$error_massage=("Sorry!.. User ID and Password not Given!! ");												
+
+					if(empty($_POST['first_name']) AND empty($_POST['last_name']) ) {
+						$error_massage=("Sorry!.. User ID and Password not Given!! ");
 						echo "<script type='text/javascript'>alert('$error_massage');</script>";
-					}										
-					elseif(empty($_POST['user_userid'])) {												
+					}
+					elseif(empty($_POST['first_name'])) {
 						$error_massage=("User ID/Email can not be empty");
-						echo "<script type='text/javascript'>alert('$error_massage');</script>";	
-					}											
-					elseif(empty($_POST['user_userpass'])) {
+						echo "<script type='text/javascript'>alert('$error_massage');</script>";
+					}
+					elseif(empty($_POST['last_name'])) {
 						$error_massage=("Password can not be empty");
-						echo "<script type='text/javascript'>alert('$error_massage');</script>";	
+						echo "<script type='text/javascript'>alert('$error_massage');</script>";
 					}
 					else
 					{
 						 session_start();
-						 $user_userid = "";
-						 $user_userpass = "";
-																							 
-						 if(isset($_POST['user_userid'])){
-							$user_userid = $_POST['user_userid'];
+                         $first_name = "";
+                         $last_name = "";
+
+						 if(isset($_POST['first_name'])){
+							$first_name = $_POST['first_name'];
 						 }
-						
-						 if (isset($_POST['user_userpass'])) {
-							$user_userpass = $_POST['user_userpass'];
+
+						 if (isset($_POST['last_name'])) {
+							$last_name = $_POST['last_name'];
 							//$user_userpass = md5($user_userpass);
 						 }
-												 
+
 						include("config.php");
-						
-						$query = $db->prepare("SELECT * FROM db_user WHERE user_userid=:user_userid AND user_userpass=:user_userpass");
-						$query->execute(array(':user_userid' => $user_userid, ':user_userpass' => $user_userpass));
-												
-						if($user_username=="" OR $user_password ==""){
-							$error_massage=("Sorry!.. User Not Found");												
-							echo "<script type='text/javascript'>alert('$error_massage');</script>";												
+
+						$query = $DB->prepare("SELECT * FROM tbl_contacts WHERE first_name=:first_name AND last_name=:last_name");
+						$query->execute(array(':first_name' => $first_name, ':last_name' => $last_name));
+
+						if($first_name=="" OR $last_name ==""){
+							$error_massage=("Sorry!.. Here User Not Found");
+							echo "<script type='text/javascript'>alert('$error_massage');</script>";
 						}
-													
+
 						if($query->rowCount() == 0){
 							$error_massage=("Sorry!.. User Not Found");
 							echo "<script type='text/javascript'>alert('$error_massage');</script>";
 							header('Location: login.php?err=1');
 						}else{
-							$row = $query->fetch(PDO::FETCH_ASSOC);
-							session_regenerate_id();											  
-							$_SESSION['sess_user_id'] = $row['user_sn'];
-							$_SESSION['sess_username'] = $row['user_username'];
-												  
-												  
-							if( $_SESSION['sess_username'] == $row['user_username']){													
-								header('Location: index2.php');											
-							}
-							else{
-								$error_massage=("Sorry!.. User Not Found");
-								echo "<script type='text/javascript'>alert('$error_massage');</script>";	
-								header('Location: login.php');
-							}
-												  
+							//$row = $query->fetch(PDO::FETCH_ASSOC);
+
+							header('Location: index2.php');
+
+
 						}
 					}
-								
-				
+
+
 			}
 		}
 		catch(Exception $e) {
@@ -143,13 +133,13 @@
 
                                         <!-- <input placeholder="User ID" title="Enter User ID" type="text" name="user_userid" class="user_texts" /> -->
 
-									<input placeholder="User ID" title="Enter User ID" type="text" name="user_userid" class="form-control" value="<?php echo (isset($_POST['user_userid'])?$_POST['user_userid']:''); ?>"/>
+									<input placeholder="First Name" title="Enter User ID" type="text" name="first_name" class="form-control" value="<?php echo (isset($_POST['first_name'])?$_POST['first_name']:''); ?>"/>
 
                                             <!-- <input type="text" class="form-control" id="email" name="user_userid" value="<?php echo (isset($_POST['user_userid'])?$_POST['user_userid']:''); ?>" placeholder="Enter email address"> -->
                                         </div>
                                         <div class="form-group">
 
-										<input placeholder="Password" title="Enter User Password" type="password" name="user_userpass" class="form-control" value="<?php echo (isset($_POST['user_userpass'])?$_POST['user_userpass']:''); ?>"/>
+										<input placeholder="Last Name" title="Enter Last Name" type="text" name="last_name" class="form-control" value="<?php echo (isset($_POST['last_name'])?$_POST['last_name']:''); ?>"/>
 
 
                                             <!-- <input type="password" class="form-control" id="password" name="user_userpass" value="" placeholder="Enter password"> -->
