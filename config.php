@@ -1,9 +1,10 @@
+
 <?php
 try {
 $dbhost = $dbname = $dbuser = $dbpass ="";
 
 $dbhost = 'localhost';
-$dbname = 'db_onlinemkt';
+$dbname = 'address_book_practice';
 $dbuser = 'root';
 $dbpass = '';
 
