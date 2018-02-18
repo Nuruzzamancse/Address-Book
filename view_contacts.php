@@ -17,12 +17,12 @@ try {
 
     <div class="row">
         <ul class="breadcrumb">
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index2.php">Home</a></li>
             <li class="active">View Contacts</li>
         </ul>
     </div>
 
-    <div class="row">
+    <div class="form-control">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">View Contact</h3>

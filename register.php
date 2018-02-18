@@ -5,11 +5,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Free Bootstrap 4 Login/Register Forms By Wired Dots</title>
+        <title>Address Book</title>
         <meta name="description" content="Love Authority." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
+<!--        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />-->
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -50,7 +50,7 @@
                                     <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a>
                                 </p>
                                 <p class="text-center">
-                                    Already have an account? <a href="index.html">Login Now</a>
+                                    Already have an account? <a href="login.php">Login Now</a>
                                 </p>
                             </div>
                         </div>
