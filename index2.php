@@ -102,7 +102,7 @@ include './header.php';
                     <td>
 
                         </a>
-                        <a class="btn btn-light a-btn-slide-text" href="view_contacts.php?cid=<?php echo $res["contact_id"]?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <a class="btn btn-success a-btn-slide-text" href="view_contacts.php?cid=<?php echo $res["contact_id"]?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>View</strong></span></a>
                         <a class="btn btn-info a-btn-slide-text" href="contacts.php?m=update&cid=<?php echo $res["contact_id"]; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span></a>&nbsp;
