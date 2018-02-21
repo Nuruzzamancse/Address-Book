@@ -18,7 +18,7 @@ include './header.php';
 
          if ($keyword <> "") {
              $sql = "SELECT * FROM tbl_contacts WHERE user_id = '$user_id' AND "
-                 . " (first_name LIKE :keyword) ORDER BY first_name ";
+                 . " (address LIKE :keyword) ORDER BY first_name ";
 
              $stmt = $DB->prepare($sql);
 
@@ -72,7 +72,7 @@ include './header.php';
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Sign Out</a>
+                    <a class="nav-link" href="index.php">Sign Out</a>
                 </li>
             </ul>
         </div>

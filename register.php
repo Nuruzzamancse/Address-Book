@@ -3,25 +3,32 @@
 include_once './config.php';
 include './header.php';
 
-$fullname = $_POST['full_name'];
 
-$user_name = $_POST['user_name'];
+if(isset($_POST['submit_button'])) {
 
-$password = '1234';
 
-$confirm_password = '1234';
+    $fullname = $_POST['full_name'];
 
-$profile_pic = 'my.jpg';
+    $user_name = $_POST['user_name'];
 
-$email = 'mr.nuruzzamancse@gmail.com';
+    $password = $_POST['password'];
 
-$sql = 'INSERT INTO tbl_users(full_name,user_name,password,confirm_password,email,profile_pic) VALUES(:full_name,:user_name,:password,:confirm_password,:email,:profile_pic)';
+    $confirm_password = $_POST['confirm_password'];
 
-$stmt = $DB->prepare($sql);
 
-$stmt->execute(['full_name'=>$fullname,'user_name'=>$user_name,'password'=>$password,'confirm_password'=>$confirm_password,'profile_pic'=>$profile_pic,'email'=>$email]);
+    $email = $_POST['email'];
 
-echo 'Post Added';
+    $sql = 'INSERT INTO tbl_users(full_name,user_name,password,confirm_password,email) VALUES(:full_name,:user_name,:password,:confirm_password,:email)';
+
+    $stmt = $DB->prepare($sql);
+
+    $stmt->execute(['full_name' => $fullname, 'user_name' => $user_name, 'password' => $password, 'confirm_password' => $confirm_password, 'email' => $email]);
+
+
+    header("location:index.php");
+
+
+}
 
 
 
@@ -71,17 +78,15 @@ echo 'Post Added';
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="confirm_password" value="" placeholder="Confirm password">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="profile_pic" value="" placeholder="Enter Your Full Name">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-                                    </form>
+
+                                        <button type="submit" name="submit_button" class="btn btn-primary btn-block">Create Account</button>
+
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
 
                                 <p class="text-center">
-                                    Already have an account? <a href="login.php">Login Now</a>
+                                    Already have an account? <a href="index.php">Login Now</a>
                                 </p>
                             </div>
                         </div>
@@ -89,8 +94,8 @@ echo 'Post Added';
                     <div class="clearfix"></div>
                     <div class="col-sm-12 mt-5 footer">
                         <p class="text-white small text-center">
-                            &copy; 2017 Login/Register Forms. A FREE Bootstrap 4 component by 
-                            <a href="https://wireddots.com">Wired Dots</a>. Designed by <a href="https://twitter.com/attacomsian">@attacomsian</a>
+                            &copy; Md.Nuruzzaman
+
                         </p>
                     </div>
                 </div>

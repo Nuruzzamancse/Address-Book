@@ -50,7 +50,7 @@ try {
             if($query->rowCount() == 0){
                 $error_massage=("Sorry!.. User Not Found");
                 echo "<script type='text/javascript'>alert('$error_massage');</script>";
-                header('Location: login.php?err=1');
+                header('Location: index.php?err=1');
             }else{
                 $row = $query->fetch();
 
@@ -140,13 +140,13 @@ catch(Exception $e) {
 
                                     <!-- <input placeholder="User ID" title="Enter User ID" type="text" name="user_userid" class="user_texts" /> -->
 
-                                    <input placeholder="First Name" title="Enter User ID" type="text" name="first_name" class="form-control" value="<?php echo (isset($_POST['first_name'])?$_POST['first_name']:''); ?>"/>
+                                    <input placeholder="Enter Your User ID" title="Enter User ID" type="text" name="first_name" class="form-control" value="<?php echo (isset($_POST['first_name'])?$_POST['first_name']:''); ?>"/>
 
                                     <!-- <input type="text" class="form-control" id="email" name="user_userid" value="<?php echo (isset($_POST['user_userid'])?$_POST['user_userid']:''); ?>" placeholder="Enter email address"> -->
                                 </div>
                                 <div class="form-group">
 
-                                    <input placeholder="Last Name" title="Enter Last Name" type="text" name="last_name" class="form-control" value="<?php echo (isset($_POST['last_name'])?$_POST['last_name']:''); ?>"/>
+                                    <input placeholder="Enter Your Password" title="Enter Last Name" type="password" name="last_name" class="form-control" value="<?php echo (isset($_POST['last_name'])?$_POST['last_name']:''); ?>"/>
 
 
                                     <!-- <input type="password" class="form-control" id="password" name="user_userpass" value="" placeholder="Enter password"> -->

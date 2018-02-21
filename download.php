@@ -22,7 +22,7 @@ header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=members.csv');
 
 // we initialize the output with the headers
-$output = "id,full_name,email,mobile,age\n";
+$output = "First Name,Middle Name,Last Name,Contact No #1,Contact No #2, Email Address\n";
 // select all members
 
 session_start();
@@ -47,7 +47,7 @@ $list = $query->fetchAll();
 
 foreach ($list as $rs) {
     // add new row
-    $output .= $rs['first_name'].",".$rs['middle_name'].",".$rs['last_name'].",".$rs['contact_no1'].",".$rs['email_address']."\n";
+    $output .= $rs['first_name'].",".$rs['middle_name'].",".$rs['last_name'].",".$rs['contact_no1'].",".$rs['contact_no2'].",".$rs['email_address']."\n";
 }
 // export the output
 echo $output;
