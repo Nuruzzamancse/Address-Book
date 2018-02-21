@@ -1,5 +1,31 @@
+<?php
+
+include_once './config.php';
+include './header.php';
+
+$fullname = $_POST['full_name'];
+
+$user_name = $_POST['user_name'];
+
+$password = '1234';
+
+$confirm_password = '1234';
+
+$profile_pic = 'my.jpg';
+
+$email = 'mr.nuruzzamancse@gmail.com';
+
+$sql = 'INSERT INTO tbl_users(full_name,user_name,password,confirm_password,email,profile_pic) VALUES(:full_name,:user_name,:password,:confirm_password,:email,:profile_pic)';
+
+$stmt = $DB->prepare($sql);
+
+$stmt->execute(['full_name'=>$fullname,'user_name'=>$user_name,'password'=>$password,'confirm_password'=>$confirm_password,'profile_pic'=>$profile_pic,'email'=>$email]);
+
+echo 'Post Added';
 
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +39,9 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <!--hero section-->
+    <form name="register_form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+
+    <!--hero section-->
         <section class="hero">
             <div class="container">
                 <div class="row">
@@ -29,26 +57,29 @@
                                 <div class="mt-4">
                                     <form>
                                         <div class="form-group">
+                                            <input type="text" class="form-control" name="full_name" value="" placeholder="Enter Your Full Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="user_name" value="" placeholder="Enter Your User Name">
+                                        </div>
+                                        <div class="form-group">
                                             <input type="email" class="form-control" name="email" value="" placeholder="Enter email address">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="password" value="" placeholder="Enter password">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="confirm-password" value="" placeholder="Confirm password">
+                                            <input type="password" class="form-control" name="confirm_password" value="" placeholder="Confirm password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="profile_pic" value="" placeholder="Enter Your Full Name">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                                     </form>
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
-                                <p class="mt-4 social-login text-center">
-                                    <a href="#" class="btn btn-twitter"><em class="ion-social-twitter"></em></a>
-                                    <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
-                                    <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
-                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
-                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a>
-                                </p>
+
                                 <p class="text-center">
                                     Already have an account? <a href="login.php">Login Now</a>
                                 </p>
@@ -65,6 +96,8 @@
                 </div>
             </div>
         </section>
+
+    </form>
 
     </body>
 </html>

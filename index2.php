@@ -5,26 +5,35 @@ include './header.php';
  try{
 
 
-     $keyword = trim($_GET["keyword"]);
+     if(isset($_GET["keyword"])) {
+         $keyword = trim($_GET["keyword"]);
 
-     $keyword = trim($_GET["keyword"]);
 
-     if($keyword<>""){
-         $sql = "SELECT * FROM tbl_contacts WHERE 1 AND "
-             . " (first_name LIKE :keyword) ORDER BY first_name ";
+         if ($keyword <> "") {
+             $sql = "SELECT * FROM tbl_contacts WHERE 1 AND "
+                 . " (first_name LIKE :keyword) ORDER BY first_name ";
 
+             $stmt = $DB->prepare($sql);
+
+             $stmt->bindValue(":keyword", $keyword . "%");
+
+             $stmt->execute();
+         }
+     }
+     else{
+
+         session_start();
+
+         $sql = "SELECT * FROM tbl_contacts WHERE user_id =:user_id ORDER BY first_name";
          $stmt = $DB->prepare($sql);
-
-         $stmt->bindValue(":keyword", $keyword."%");
-     }else{
-         $sql = "SELECT * FROM tbl_contacts WHERE 1 ORDER BY first_name";
-         $stmt = $DB->prepare($sql);
+         $stmt->execute(['user_id' => $_SESSION['user_id']]);
 
      }
 
-     $stmt->execute();
+
 
      $results = $stmt->fetchAll();
+
 
 
  }
@@ -39,8 +48,8 @@ include './header.php';
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <form class="form-inline" action="index2.php" method="get">
-            <input class="form-control" name="keyword" value="<?php echo $_GET["keyword"]?>" type="text" placeholder="Search by first name">
-            <button class="btn btn-success" type="submit">Search</button>
+            <input class="form-control" name="keyword"  type="text" placeholder="Search by first name">
+            <button class="btn btn-success" name="search_button" type="submit">Search</button>
 <!--            <div style="float: right" ><a href="contacts.php"><button class="btn" > Add New Contact</button></a></div>-->
         </form>
 
@@ -84,29 +93,29 @@ include './header.php';
                         <th>Email</th>
                         <th>Action</th>
                     </tr>
-            <?php foreach ($results as $res){?>
+            <?php foreach ($results as $result){?>
                 <tr>
                     <td>
-                        <?php $pic = ($res["profile_pic"] <> "" ) ? $res["profile_pic"] : "no_avatar.png" ?>
+                        <?php $pic = ($result->profile_pic <> "" ) ? $result->profile_pic : "no_avatar.png" ?>
 <!--                        --><?php //$pic = ($res["profile_pic"] <> "")? $res["profile_pic"] : "no_avater.png"?>
                         <a href="profile_pics/<?php echo $pic ?>" target="_blank"><img src="profile_pics/<?php echo $pic ?>" alt="" width="50" height="50" ></a>
 
                     </td>
 
 
-                    <td> <?php echo $res["first_name"]?></td>
-                    <td> <?php echo $res["last_name"]?></td>
-                    <td> <?php echo $res["contact_no1"]?></td>
-                    <td> <?php echo $res["email_address"]?></td>
+                    <td> <?php echo $result->first_name?></td>
+                    <td> <?php echo $result->last_name?></td>
+                    <td> <?php echo $result->contact_no1?></td>
+                    <td> <?php echo $result->email_address?></td>
 
                     <td>
 
                         </a>
-                        <a class="btn btn-success a-btn-slide-text" href="view_contacts.php?cid=<?php echo $res["contact_id"]?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <a class="btn btn-success a-btn-slide-text" href="view_contacts.php?cid=<?php echo $result->contact_id?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>View</strong></span></a>
-                        <a class="btn btn-info a-btn-slide-text" href="contacts.php?m=update&cid=<?php echo $res["contact_id"]; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <a class="btn btn-info a-btn-slide-text" href="contacts.php?m=update&cid=<?php echo $result->contact_id; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span></a>&nbsp;
-                        <a class="btn btn-danger a-btn-slide-text" href="process_form.php?mode=delete&cid=<?php echo $res["contact_id"]; ?>&keyword=<?php echo $_GET["keyword"]; ?>&pagenum=<?php echo $_GET["pagenum"]; ?>" onclick="return confirm('Are you sure?')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span></a>&nbsp;
+                        <a class="btn btn-danger a-btn-slide-text" href="process_form.php?mode=delete&cid=<?php echo $result->contact_id; ?>&keyword=<?php echo $_GET["keyword"]; ?>&pagenum=<?php echo $_GET["pagenum"]; ?>" onclick="return confirm('Are you sure?')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span></a>&nbsp;
 
 
                     </td>
