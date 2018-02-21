@@ -1,6 +1,7 @@
 <?php
 
     include_once './config.php';
+
     include './header.php';
 
 
@@ -32,7 +33,7 @@
 
             try {
 
-                $sql = 'INSERT INTO tbl_contacts(user_id,first_name,middle_name) VALUES(:user_id,:first_name,:middle_name)';
+                $sql = 'INSERT INTO tbl_contacts(user_id,first_name,middle_name,last_name,address,contact_no1,contact_no2,email_address,profile_pic) VALUES(:user_id,:first_name,:middle_name,:last_name,:address,:contact_no1,:contact_no2,:email_address,:profile_pic)';
 
 
                 $user_id = $_SESSION['user_id'];
@@ -41,7 +42,7 @@
 
                 $stmt = $DB->prepare($sql);
 
-                $stmt->execute(['user_id'=>$user_id,'first_name'=>$first_name,'middle_name'=>$middle_name]);
+                $stmt->execute(['user_id'=>$user_id,'first_name'=>$first_name,'middle_name'=>$middle_name,'last_name'=>$last_name,'email_address'=>$email_id,'address'=>$address,'contact_no1'=>$contact_no1,'contact_no2'=>$contact_no2,'profile_pic'=>$filename]);
 
                 echo 'Here';
 
@@ -63,7 +64,7 @@
             $_SESSION["errorType"] = "danger";
             $_SESSION["errorMsg"] = "failed to upload image.";
         }
-//    header("location:index2.php");
+  header("location:index2.php");
     }
 
 

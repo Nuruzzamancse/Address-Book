@@ -5,12 +5,19 @@ include './header.php';
  try{
 
 
+     $keyword="";
+
      if(isset($_GET["keyword"])) {
          $keyword = trim($_GET["keyword"]);
+     }
 
+
+
+        session_start();
+        $user_id = $_SESSION['user_id'];
 
          if ($keyword <> "") {
-             $sql = "SELECT * FROM tbl_contacts WHERE 1 AND "
+             $sql = "SELECT * FROM tbl_contacts WHERE user_id = '$user_id' AND "
                  . " (first_name LIKE :keyword) ORDER BY first_name ";
 
              $stmt = $DB->prepare($sql);
@@ -19,16 +26,17 @@ include './header.php';
 
              $stmt->execute();
          }
-     }
+
      else{
 
-         session_start();
+
 
          $sql = "SELECT * FROM tbl_contacts WHERE user_id =:user_id ORDER BY first_name";
          $stmt = $DB->prepare($sql);
          $stmt->execute(['user_id' => $_SESSION['user_id']]);
 
      }
+
 
 
 
@@ -113,9 +121,9 @@ include './header.php';
                         </a>
                         <a class="btn btn-success a-btn-slide-text" href="view_contacts.php?cid=<?php echo $result->contact_id?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>View</strong></span></a>
-                        <a class="btn btn-info a-btn-slide-text" href="contacts.php?m=update&cid=<?php echo $result->contact_id; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <a class="btn btn-info a-btn-slide-text" href="contacts2.php?m=update&cid=<?php echo $result->contact_id; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span></a>&nbsp;
-                        <a class="btn btn-danger a-btn-slide-text" href="process_form.php?mode=delete&cid=<?php echo $result->contact_id; ?>&keyword=<?php echo $_GET["keyword"]; ?>&pagenum=<?php echo $_GET["pagenum"]; ?>" onclick="return confirm('Are you sure?')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span></a>&nbsp;
+                        <a class="btn btn-danger a-btn-slide-text" href="delete_contacts.php?cid=<?php echo $result->contact_id; ?>" onclick="return confirm('Are you sure?')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span></a>&nbsp;
 
 
                     </td>
@@ -131,6 +139,10 @@ include './header.php';
 
 
 <?php } ?>
+
+
+    <a class="btn btn-success a-btn-slide-text" href="download.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong>Download</strong></span></a>
 
 </div>
 

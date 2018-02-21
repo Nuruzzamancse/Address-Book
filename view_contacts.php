@@ -1,7 +1,9 @@
 <?php
 
 require_once './config.php';
+
 include './header.php';
+
 try {
 //    $sql = "SELECT * FROM tbl_contacts WHERE 1 AND contact_id = :cid";
 //    $stmt = $DB->prepare($sql);
@@ -102,14 +104,14 @@ try {
                                     <div class="form-group">
                                         <label class="control-label col-sm-6" style="color: gold">Contact No #1:</label>
                                         <div class="col-sm-10">
-                                            <input type="text"  value="<?php $contact->contact_no1 ?>" placeholder="Last Name" id="last_name" class="form-control" name="last_name"><span id="last_name_err" class="error"></span>
+                                            <input type="text"  value="<?php echo $contact->contact_no1 ?>" placeholder="Contact No 1" id="last_name" class="form-control" name="contact_no1"><span id="last_name_err" class="error"></span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-6" style="color: gold">Middle Name:</label>
                                         <div class="col-sm-10">
-                                            <input type="text"  value="<?php echo $contact->middle_name ?>" placeholder="Last Name" id="last_name" class="form-control" name="last_name"><span id="last_name_err" class="error"></span>
+                                            <input type="text"  value="<?php echo $contact->middle_name ?>" placeholder="Last Name" id="last_name" class="form-control" name="middle_name"><span id="last_name_err" class="error"></span>
                                         </div>
                                     </div>
 
@@ -126,11 +128,9 @@ try {
                                     <div class="form-group">
                                         <label class="control-label col-sm-6" style="color: gold">Email ID:</label>
                                         <div class="col-sm-10">
-                                            <input type="text"  value="<?php echo $contact->email_address?>" placeholder="Last Name" id="last_name" class="form-control" name="last_name"><span id="last_name_err" class="error"></span>
+                                            <input type="text"  value="<?php echo $contact->email_address?>" placeholder="Last Name" id="last_name" class="form-control" name="email_address"><span id="last_name_err" class="error"></span>
                                         </div>
                                     </div>
-
-
 
 
 
@@ -138,7 +138,7 @@ try {
                                     <div class="form-group">
                                         <label class="control-label col-sm-6" style="color: gold">Contact No #2:</label>
                                         <div class="col-sm-10">
-                                            <input type="text"  value="<?php echo $contact->contact_no2 ?>" placeholder="Contact No 2" id="last_name" class="form-control" name="last_name"><span id="last_name_err" class="error"></span>
+                                            <input type="text"  value="<?php echo $contact->contact_no2 ?>" placeholder="Contact No 2" id="last_name" class="form-control" name="contact_no2"><span id="last_name_err" class="error"></span>
                                         </div>
                                     </div>
 

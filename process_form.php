@@ -1,7 +1,9 @@
 <?php
 
 require './config.php';
+
 $mode = $_REQUEST["mode"];
+
 if ($mode == "add_new" ) {
     $first_name = trim($_POST['first_name']);
     $middle_name = trim($_POST['middle_name']);
@@ -57,7 +59,7 @@ if ($mode == "add_new" ) {
         $_SESSION["errorType"] = "danger";
         $_SESSION["errorMsg"] = "failed to upload image.";
     }
-    header("location:index2.php");
+    header("location:index.php");
 } elseif ( $mode == "update_old" ) {
 
     $first_name = trim($_POST['first_name']);
@@ -118,7 +120,7 @@ if ($mode == "add_new" ) {
         $_SESSION["errorType"] = "danger";
         $_SESSION["errorMsg"] = "Failed to upload image.";
     }
-    header("location:index2.php?pagenum=".$_POST['pagenum']);
+    header("location:index.php?pagenum=".$_POST['pagenum']);
 } elseif ( $mode == "delete" ) {
     $cid = intval($_GET['cid']);
 
@@ -143,6 +145,6 @@ if ($mode == "add_new" ) {
         $_SESSION["errorMsg"] = $ex->getMessage();
     }
 
-    header("location:index2.php?pagenum=".$_GET['pagenum']);
+    header("location:index.php?pagenum=".$_GET['pagenum']);
 }
 ?>

@@ -1,6 +1,4 @@
-﻿
-
-CREATE TABLE `tbl_contacts` (
+﻿CREATE TABLE `tbl_contacts` (
 'user_id' varchar (255),`contact_id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,

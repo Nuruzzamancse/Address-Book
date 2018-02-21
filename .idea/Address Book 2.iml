@@ -5,5 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Database_Resource" />
+    <orderEntry type="module" module-name="Contact List" />
   </component>
 </module>
